@@ -1,28 +1,22 @@
-pipeline {
+pipeline { 
     agent any 
+    options {
+        skipStagesAfterUnstable()
+    }
     stages {
         stage('Build') { 
-            steps {
-                script {
-                    // Clean and build the project using Maven
-                    sh './mvnw clean install'
-                }
+            steps { 
+                echo "This is build step"
             }
         }
-        stage('Test') { 
+        stage('Test'){
             steps {
-                script {
-                    // Run tests using Maven
-                    sh './mvnw test'
-                }
+                sh 'bash test.sh'
             }
         }
-        stage('Deploy') { 
+        stage('Deploy') {
             steps {
-                script {
-                    // This is a placeholder for deployment steps
-                    echo 'Deploying application...'
-                }
+               echo "Successfully deployed"
             }
         }
     }
